@@ -8,6 +8,8 @@ import {
 } from './PhonebookForm.styled';
 import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
+import { useDispatch } from 'react-redux';
+import { addContact } from '../../redux/phonebookSlice';
 
 const phoneRegExp =
   /^(?:\+?\d{1,4}[-.\s]?)?\(?\d{1,3}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/;
@@ -24,42 +26,47 @@ const Schema = Yup.object().shape({
     .max(10, 'Too long'),
 });
 
-export const PhonebookForm = ({ onAdd }) => (
-  <>
-    <Formik
-      initialValues={{
-        name: '',
-        number: '',
-      }}
-      validationSchema={Schema}
-      onSubmit={(values, actions) => {
-        onAdd({ ...values, id: nanoid() });
-        actions.resetForm();
-        console.log(values);
-      }}
-    >
-      <StyledForm>
-        <FormLabel htmlFor="name">Name</FormLabel>
-        <StyledField
-          id="name"
-          type="text"
-          name="name"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-        />
-        <ErrorStyled name="name" component="div" />
+export const PhonebookForm = () => {
+  const dispatch = useDispatch();
+  const onSubmit = (values, actions) => {
+    const { name, number } = values;
+    dispatch(addContact({ name, number, id: nanoid() }));
+    actions.resetForm();
+  };
 
-        <FormLabel htmlFor="phone">Number</FormLabel>
-        <StyledField
-          id="phone"
-          name="number"
-          type="tel"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-        />
-        <ErrorStyled name="number" component="div" />
-        <FormButton type="submit">Add contact</FormButton>
-      </StyledForm>
-    </Formik>
-  </>
-);
+  return (
+    <>
+      <Formik
+        initialValues={{
+          name: '',
+          number: '',
+        }}
+        validationSchema={Schema}
+        onSubmit={onSubmit}
+      >
+        <StyledForm>
+          <FormLabel htmlFor="name">Name</FormLabel>
+          <StyledField
+            id="name"
+            type="text"
+            name="name"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+          />
+          <ErrorStyled name="name" component="div" />
+
+          <FormLabel htmlFor="phone">Number</FormLabel>
+          <StyledField
+            id="phone"
+            name="number"
+            type="tel"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+          />
+          <ErrorStyled name="number" component="div" />
+          <FormButton type="submit">Add contact</FormButton>
+        </StyledForm>
+      </Formik>
+    </>
+  );
+};
