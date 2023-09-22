@@ -1,19 +1,22 @@
-import { ListItem } from './ContactsListItem.styled';
 import { useDispatch } from 'react-redux';
+import { FaTrash } from 'react-icons/fa';
+import { ListItem, ListItemBlock } from './ContactsListItem.styled';
+import { deleteContact } from '../../redux/operations';
 
-import { deleteContact } from '../../redux/phonebookSlice';
 export const ContactsListItem = ({ contact }) => {
   const dispatch = useDispatch();
-  const handleDelete = contactId => {
-    dispatch(deleteContact(contactId));
+  const handleDelete = () => {
+    dispatch(deleteContact(contact.id));
   };
 
   return (
-    <>
+    <ListItemBlock>
       <ListItem>
         {contact.name}: {contact.number}
       </ListItem>
-      <button onClick={() => handleDelete(contact.id)}>Delete</button>
-    </>
+      <button onClick={() => handleDelete(contact.id)}>
+        <FaTrash />
+      </button>
+    </ListItemBlock>
   );
 };

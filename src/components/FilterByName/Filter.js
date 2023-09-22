@@ -1,5 +1,5 @@
-import { FilterStyled } from './Filter.styled';
 import { useSelector, useDispatch } from 'react-redux';
+import { FilterStyled } from './Filter.styled';
 import { setFilter } from '../../redux/phonebookSlice';
 
 export const Filter = () => {
@@ -12,8 +12,12 @@ export const Filter = () => {
   };
   return (
     <FilterStyled>
-      Find contacts by name
-      <input type="text" value={filter} onChange={handleChange} />
+      <input
+        type="text"
+        value={filter}
+        onChange={handleChange}
+        placeholder="Find contact"
+      />
     </FilterStyled>
   );
 };
