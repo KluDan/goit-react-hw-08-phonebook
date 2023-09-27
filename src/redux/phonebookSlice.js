@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createSelector } from 'reselect';
+import { logOut } from 'redux/auth/operations';
 import { addContact, deleteContact, fetchContacts } from './operations';
 
 const handlePending = state => {
@@ -25,6 +26,11 @@ const handleDeleteContactFulfilled = (state, action) => {
   state.contacts.items = state.contacts.items.filter(
     contact => contact.id !== action.payload
   );
+};
+const handleLogOutFulfilled = state => {
+  state.contacts.items = [];
+  state.contacts.error = null;
+  state.contacts.isLoading = false;
 };
 
 const phonebookSlice = createSlice({
@@ -53,7 +59,8 @@ const phonebookSlice = createSlice({
       .addCase(addContact.rejected, handleRejected)
       .addCase(deleteContact.pending, handlePending)
       .addCase(deleteContact.fulfilled, handleDeleteContactFulfilled)
-      .addCase(deleteContact.rejected, handleRejected),
+      .addCase(deleteContact.rejected, handleRejected)
+      .addCase(logOut.fulfilled, handleLogOutFulfilled),
 });
 
 export const { setFilter } = phonebookSlice.actions;
