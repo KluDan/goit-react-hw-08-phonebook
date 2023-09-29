@@ -6,12 +6,14 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  error: null,
 };
 
 const handleRegisterAndLogInFulfilled = (state, action) => {
   state.user = action.payload.user;
   state.token = action.payload.token;
   state.isLoggedIn = true;
+  state.error = null;
 };
 
 const authSlice = createSlice({
@@ -21,6 +23,10 @@ const authSlice = createSlice({
     builder
       .addCase(register.fulfilled, handleRegisterAndLogInFulfilled)
       .addCase(logIn.fulfilled, handleRegisterAndLogInFulfilled)
+      .addCase(logIn.rejected, (state, action) => {
+        // Handle login rejection (error)
+        state.error = action.error.message; // Store the error message in the state
+      })
       .addCase(logOut.fulfilled, state => {
         state.user = { name: null, email: null };
         state.token = null;

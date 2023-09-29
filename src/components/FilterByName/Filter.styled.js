@@ -1,14 +1,29 @@
 import styled from 'styled-components';
 
-export const FilterStyled = styled.label`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 10px;
+export const FilterStyled = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #b39b86;
+  padding: 30px 40px;
   input {
-    padding: 5px;
-    height: 30px;
-    width: 200px;
-    border: 1px solid black;
+    font-size: 24px;
+    width: 100%;
+    padding: 10px 10px 10px 35px;
+    border: 1px solid #d4ae7a;
+    border-radius: 10px;
+    position: relative;
+    &:focus {
+      outline: none;
+    }
+  }
+  svg {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    z-index: 20;
   }
 `;

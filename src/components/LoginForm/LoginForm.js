@@ -1,9 +1,20 @@
-import { useDispatch } from 'react-redux';
+import { FormBtn } from 'components/FormBtn/FormBtn';
+import { FormInput } from 'components/FormInput/FormInput';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { logIn } from 'redux/auth/operations';
-import css from './LoginForm.module.css';
+
+import { Error, Form, StyledLink } from './LoginForm.styled';
 
 export const LoginForm = () => {
+  const error = useSelector(state => state.auth.error);
   const dispatch = useDispatch();
+
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -14,20 +25,29 @@ export const LoginForm = () => {
         password: form.elements.password.value,
       })
     );
-    form.reset();
+    setFormData({ email: '', password: '' });
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
-      <label className={css.label}>
-        Email
-        <input type="email" name="email" />
-      </label>
-      <label className={css.label}>
-        Password
-        <input type="password" name="password" />
-      </label>
-      <button type="submit">Log In</button>
-    </form>
+    <Form onSubmit={handleSubmit} autoComplete="off">
+      <FormInput
+        name={'email'}
+        type={'text'}
+        onChange={e => setFormData({ ...formData, email: e.target.value })}
+      />
+      <FormInput
+        name={'password'}
+        type={'password'}
+        onChange={e => setFormData({ ...formData, password: e.target.value })}
+      />
+      {error && (
+        <p>
+          Invalid email or password. Please check entered data or{' '}
+          <StyledLink to="/register">register</StyledLink> it.
+        </p>
+      )}
+
+      <FormBtn name="sign in" />
+    </Form>
   );
 };

@@ -10,6 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgba(182, 145, 119, 0.2);
 }
 
 code {
@@ -69,12 +70,8 @@ h2{
 }
 input[type='tel'] {
 	margin: 0px;
-	padding: 5px;
 }
 button:hover{
-	background-color: blue;
-	color:#fff;
-	border-color:blue;
 	cursor: pointer;
 }
 ul, ol {

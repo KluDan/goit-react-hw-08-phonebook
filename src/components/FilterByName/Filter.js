@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { FilterStyled } from './Filter.styled';
+import { FilterStyled, ModalBackground } from './Filter.styled';
 import { setFilter } from '../../redux/phonebookSlice';
+import { AiOutlineSearch } from 'react-icons/ai';
+import { useEffect, useRef, useState } from 'react';
 
 export const Filter = () => {
   const filter = useSelector(state => state.phonebook.filter);
@@ -10,14 +12,18 @@ export const Filter = () => {
     const newFilter = e.target.value;
     dispatch(setFilter(newFilter));
   };
+
   return (
-    <FilterStyled>
-      <input
-        type="text"
-        value={filter}
-        onChange={handleChange}
-        placeholder="Find contact"
-      />
-    </FilterStyled>
+    <>
+      <FilterStyled>
+        <AiOutlineSearch />
+        <input
+          type="text"
+          value={filter}
+          onChange={handleChange}
+          placeholder="Find contact"
+        />
+      </FilterStyled>
+    </>
   );
 };

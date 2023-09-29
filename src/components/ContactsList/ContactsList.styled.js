@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 
-export const List = styled.ul``;
-export const ListItem = styled.li`
+export const List = styled.ul`
   display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
+  flex-direction: column;
+  gap: 20px;
+  list-style: none;
+  padding: 20px 40px;
+`;
+export const ListItem = styled.li`
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
 `;

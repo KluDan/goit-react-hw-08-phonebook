@@ -12,6 +12,7 @@ import {
   InputField,
 } from './PhonebookForm.styled';
 import { addContact } from '../../redux/operations';
+import { FormBtn } from 'components/FormBtn/FormBtn';
 
 const nameRegExp = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
 const Schema = Yup.object().shape({
@@ -95,7 +96,7 @@ export const PhonebookForm = () => {
           </InputField>
 
           <ErrorStyled name="number" component="div" />
-          <FormButton type="submit">Add contact</FormButton>
+          <FormBtn type="submit" name="add contact" />
         </StyledForm>
       </Formik>
     </>
