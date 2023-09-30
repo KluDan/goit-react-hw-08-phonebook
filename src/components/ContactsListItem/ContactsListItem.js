@@ -1,24 +1,24 @@
 import { useDispatch } from 'react-redux';
 import { FaTrash, FaEdit } from 'react-icons/fa';
-import {
-  ListContact,
-  ListImg,
-  ListItem,
-  ListItemBlock,
-  ListName,
-  ListNumber,
-} from './ContactsListItem.styled';
+import { ListContact, ListImg, ListItemBlock } from './ContactsListItem.styled';
 import { deleteContact } from '../../redux/operations';
 
-export const ContactsListItem = ({ contact }) => {
+export const ContactsListItem = ({ contact, onEditClick }) => {
   const dispatch = useDispatch();
+
+  const handleEditClick = () => {
+    onEditClick(contact);
+  };
+
   const handleDelete = () => {
     dispatch(deleteContact(contact.id));
   };
+
   const firstLetters = contact.name
     .split(' ')
     .map(namePart => namePart[0])
     .join('');
+
   return (
     <ListItemBlock>
       <ListImg>{firstLetters}</ListImg>
@@ -29,6 +29,10 @@ export const ContactsListItem = ({ contact }) => {
 
       <button onClick={() => handleDelete(contact.id)}>
         <FaTrash />
+      </button>
+
+      <button onClick={handleEditClick}>
+        <FaEdit />
       </button>
     </ListItemBlock>
   );

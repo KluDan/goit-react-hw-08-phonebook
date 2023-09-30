@@ -34,6 +34,4 @@ export const StyledListItemTextLogOut = styled(ListItemText)`
   background-color: #d4ae7a;
   border-radius: 5px;
 `;
-/* .username {
-  font-weight: 700;
-} */
+

@@ -6,8 +6,6 @@ import Popper from '@mui/material/Popper';
 import Paper from '@mui/material/Paper';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
 import { useState } from 'react';
 import {
   StyledListItem,

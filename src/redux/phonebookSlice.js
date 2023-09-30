@@ -1,7 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createSelector } from 'reselect';
 import { logOut } from 'redux/auth/operations';
-import { addContact, deleteContact, fetchContacts } from './operations';
+import {
+  addContact,
+  deleteContact,
+  fetchContacts,
+  editContact,
+} from './operations';
 
 const handlePending = state => {
   state.contacts.isLoading = true;
@@ -27,6 +32,18 @@ const handleDeleteContactFulfilled = (state, action) => {
     contact => contact.id !== action.payload
   );
 };
+const handleUpdateContactFulfilled = (state, action) => {
+  state.contacts.isLoading = false;
+  state.contacts.error = null;
+  const updatedContactIndex = state.contacts.items.findIndex(
+    contact => contact.id === action.payload.id
+  );
+
+  if (updatedContactIndex !== -1) {
+    state.contacts.items[updatedContactIndex] = action.payload;
+  }
+};
+
 const handleLogOutFulfilled = state => {
   state.contacts.items = [];
   state.contacts.error = null;
@@ -60,6 +77,9 @@ const phonebookSlice = createSlice({
       .addCase(deleteContact.pending, handlePending)
       .addCase(deleteContact.fulfilled, handleDeleteContactFulfilled)
       .addCase(deleteContact.rejected, handleRejected)
+      .addCase(editContact.pending, handlePending)
+      .addCase(editContact.fulfilled, handleUpdateContactFulfilled)
+      .addCase(editContact.rejected, handleRejected)
       .addCase(logOut.fulfilled, handleLogOutFulfilled),
 });
 

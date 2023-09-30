@@ -9,7 +9,7 @@ export const AppBar = () => {
   const { isLoggedIn } = useAuth();
   const location = useLocation();
 
-  const isLoginPage = location.pathname === '/login';
+  const isLoginPage = location.pathname === '/';
   const isRegisterPage = location.pathname === '/register';
 
   return (

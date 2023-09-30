@@ -3,7 +3,7 @@ import { ContactsListItem } from 'components/ContactsListItem/ContactsListItem';
 import { List, ListItem } from './ContactsList.styled';
 import { selectFilteredContacts } from '../../redux/phonebookSlice';
 
-export const ContactsList = () => {
+export const ContactsList = ({ onEditClick }) => {
   const filteredContacts = useSelector(selectFilteredContacts);
 
   const sortedContacts = filteredContacts.slice().sort((a, b) => {
@@ -16,7 +16,7 @@ export const ContactsList = () => {
     <List>
       {sortedContacts.map(contact => (
         <ListItem key={contact.id}>
-          <ContactsListItem contact={contact} />
+          <ContactsListItem contact={contact} onEditClick={onEditClick} />
         </ListItem>
       ))}
     </List>

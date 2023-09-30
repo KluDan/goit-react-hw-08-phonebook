@@ -4,7 +4,6 @@ import { FaUser, FaPhone } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import {
-  FormButton,
   FormLabel,
   StyledField,
   StyledForm,
@@ -13,6 +12,7 @@ import {
 } from './PhonebookForm.styled';
 import { addContact } from '../../redux/operations';
 import { FormBtn } from 'components/FormBtn/FormBtn';
+import { CloseBtn } from 'components/EditForm/EditForm.styled';
 
 const nameRegExp = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
 const Schema = Yup.object().shape({
@@ -22,7 +22,7 @@ const Schema = Yup.object().shape({
     .matches(nameRegExp, 'Name is not valid'),
 });
 
-export const PhonebookForm = () => {
+export const PhonebookForm = ({ onClose }) => {
   const dispatch = useDispatch();
   const [inputNumber, setInputNumber] = useState('');
 
@@ -64,6 +64,7 @@ export const PhonebookForm = () => {
         onSubmit={handleSubmit}
       >
         <StyledForm>
+          <CloseBtn onClick={onClose} />
           <InputField>
             <FormLabel htmlFor="name">
               <FaUser />

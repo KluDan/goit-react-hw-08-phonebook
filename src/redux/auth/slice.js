@@ -24,8 +24,7 @@ const authSlice = createSlice({
       .addCase(register.fulfilled, handleRegisterAndLogInFulfilled)
       .addCase(logIn.fulfilled, handleRegisterAndLogInFulfilled)
       .addCase(logIn.rejected, (state, action) => {
-        // Handle login rejection (error)
-        state.error = action.error.message; // Store the error message in the state
+        state.error = action.error.message;
       })
       .addCase(logOut.fulfilled, state => {
         state.user = { name: null, email: null };

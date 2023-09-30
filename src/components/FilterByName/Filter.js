@@ -1,8 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { FilterStyled, ModalBackground } from './Filter.styled';
+import { FilterStyled} from './Filter.styled';
 import { setFilter } from '../../redux/phonebookSlice';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { useEffect, useRef, useState } from 'react';
 
 export const Filter = () => {
   const filter = useSelector(state => state.phonebook.filter);

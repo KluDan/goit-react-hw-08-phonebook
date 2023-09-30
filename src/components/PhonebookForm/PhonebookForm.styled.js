@@ -3,16 +3,13 @@ import { Field, Form, ErrorMessage } from 'formik';
 
 export const StyledForm = styled(Form)`
   width: 400px;
-  padding: 30px;
+  padding: 50px 30px 30px;
   border-radius: 10px;
   display: flex;
   gap: 40px;
   flex-direction: column;
   background: rgba(182, 145, 119, 0.6);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
 `;
 
 export const InputField = styled.div`

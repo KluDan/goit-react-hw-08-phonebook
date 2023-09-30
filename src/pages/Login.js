@@ -2,7 +2,6 @@ import { LoginForm } from 'components/LoginForm/LoginForm';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import LoginImg from 'assets/images/LoginImg.jpg';
 import styled from 'styled-components';
-import { FormBtn } from 'components/FormBtn/FormBtn';
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`
@@ -17,13 +16,15 @@ const Container = styled.div`
 `;
 
 const BgImg = styled.div`
-  height: auto;
-  flex: 1 0 37%;
+  height: 100%;
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
 `;
 const BgContent = styled.div`
+  position: relative;
   flex: 1 0 63%;
-  padding-top: 80px;
-  padding-left: 300px;
   width: 100%;
   background: rgb(3, 9, 5);
   background: linear-gradient(
@@ -47,7 +48,14 @@ const PageText = styled.p`
 `;
 
 const BgLeft = styled.div`
+  flex: 1 0 37%;
   position: relative;
+`;
+const BgContentBlock = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 const BgLeftText = styled.div`
   position: absolute;
@@ -103,11 +111,13 @@ export default function Login() {
             </BgImg>
           </BgLeft>
           <BgContent>
-            <h1>Welcome Back!</h1>
-            <PageText>
-              Log in to access your contacts and stay connected
-            </PageText>
-            <LoginForm />
+            <BgContentBlock>
+              <h1>Welcome Back!</h1>
+              <PageText>
+                Log in to access your contacts and stay connected
+              </PageText>
+              <LoginForm />
+            </BgContentBlock>
           </BgContent>
         </Container>
       </div>

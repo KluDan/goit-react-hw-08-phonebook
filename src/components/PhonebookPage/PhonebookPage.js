@@ -2,7 +2,6 @@ import { ContactsList } from 'components/ContactsList/ContactsList';
 import { PhonebookForm } from 'components/PhonebookForm/PhonebookForm';
 import { selectError, selectIsLoading } from 'redux/phonebookSlice';
 
-import { LineWave } from 'react-loader-spinner';
 import { useSelector } from 'react-redux';
 import { Filter } from 'components/FilterByName/Filter';
 import {
@@ -12,46 +11,95 @@ import {
   BgImg,
   Title,
   AddNewContact,
-  FilterModal,
+  FormBlock,
 } from './PhonebookPage.styled';
-import PhonebookImg from '../../assets/images/PhobebookImg.jpg';
+import PhonebookImg from '../../assets/images/PhonebookImg.jpg';
 import { AiOutlineUserAdd } from 'react-icons/ai';
+import { EditForm } from 'components/EditForm/EditForm';
+import { useState } from 'react';
+import { Loader } from 'components/Loader';
 
 export const PhonebookPage = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingContact, setEditingContact] = useState(null);
+  const [isAddingContact, setIsAddingContact] = useState(false);
+  const [isEditingForm, setIsEditingForm] = useState(false);
+  const [isPhonebookForm, setIsPhonebookForm] = useState(false);
+
+  const handleEditClick = contact => {
+    setIsEditing(true);
+    setEditingContact(contact);
+    setIsEditingForm(true);
+    setIsPhonebookForm(false);
+  };
+  const handleContactClick = contact => {
+    if (isEditing) {
+      setEditingContact(contact);
+    } else {
+      handleEditClick(contact);
+    }
+  };
+
+  const handleAddContactClick = () => {
+    setIsAddingContact(true);
+    setIsPhonebookForm(true);
+    setIsEditingForm(false);
+  };
+
+  const handleFormClose = () => {
+    setIsEditing(false);
+    setEditingContact(null);
+    setIsAddingContact(false);
+    setIsEditingForm(false);
+    setIsPhonebookForm(false);
+  };
+
+  const renderForm = () => {
+    if (isPhonebookForm) {
+      return (
+        <>
+          <Title>Create contact</Title>
+          <PhonebookForm onClose={handleFormClose} />
+        </>
+      );
+    }
+
+    if (isEditingForm && editingContact !== null) {
+      return (
+        <>
+          <Title>Update contact</Title>
+          <EditForm
+            contactId={editingContact.id}
+            contactData={editingContact}
+            onClose={handleFormClose}
+          />
+        </>
+      );
+    }
+
+    return null;
+  };
+
   return (
     <Wrapper>
       <Contacts>
         <Filter />
-        {isLoading && !error && (
-          <LineWave
-            height="70"
-            width="100"
-            color="#090a09"
-            ariaLabel="line-wave"
-            wrapperStyle={{
-              padding: '0',
-              marginLeft: '100px',
-            }}
-            wrapperClass=""
-            visible={true}
-            firstLineColor=""
-            middleLineColor=""
-            lastLineColor=""
-          />
-        )}
+        {isLoading && !error && <Loader />}
         <AddNewContact>
           <AiOutlineUserAdd />
-          <p>Add new contact</p>
+          <p onClick={handleAddContactClick}>Add new contact</p>
         </AddNewContact>
-        <ContactsList />
+        <ContactsList
+          onEditClick={handleEditClick}
+          onContactClick={handleContactClick}
+        />
       </Contacts>
       <ContentSide>
-        <Title>Create contact</Title>
         <BgImg src={PhonebookImg} />
-        <PhonebookForm />
+        <FormBlock>{renderForm()}</FormBlock>
       </ContentSide>
     </Wrapper>
   );

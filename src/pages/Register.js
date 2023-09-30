@@ -7,13 +7,11 @@ const Container = styled.div`
   display: flex;
   flex-direction: row-reverse;
   height: 100vh;
-  img {
-    flex: 1 0 40%;
-  }
+  overflow: hidden;
 `;
 const BgContent = styled.div`
-  padding-top: 30px;
-  padding-left: 200px;
+  flex: 0 1 60%;
+  position: relative;
   width: 100%;
   background: rgb(13, 16, 9);
   background: linear-gradient(
@@ -34,6 +32,20 @@ const BgContent = styled.div`
     margin-bottom: 60px;
   }
 `;
+const BgContentBlock = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+const BgImg = styled.div`
+  height: 100%;
+  flex: 1 0 40%;
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+`;
 
 export default function Register() {
   return (
@@ -43,11 +55,17 @@ export default function Register() {
           <title>Registration</title>
         </Helmet>
         <Container>
-          <img src={RegisterImg} />
+          <BgImg>
+            <img src={RegisterImg} />
+          </BgImg>
           <BgContent>
-            <h1>Create Your Phonebook Account</h1>
-            <p>Join our Phonebook community and easily manage your contacts</p>
-            <RegisterForm />
+            <BgContentBlock>
+              <h1>Create Your Phonebook Account</h1>
+              <p>
+                Join our Phonebook community and easily manage your contacts
+              </p>
+              <RegisterForm />
+            </BgContentBlock>
           </BgContent>
         </Container>
       </div>

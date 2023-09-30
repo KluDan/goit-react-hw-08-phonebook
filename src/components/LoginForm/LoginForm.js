@@ -2,10 +2,9 @@ import { FormBtn } from 'components/FormBtn/FormBtn';
 import { FormInput } from 'components/FormInput/FormInput';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { logIn } from 'redux/auth/operations';
 
-import { Error, Form, StyledLink } from './LoginForm.styled';
+import { Form, StyledLink } from './LoginForm.styled';
 
 export const LoginForm = () => {
   const error = useSelector(state => state.auth.error);

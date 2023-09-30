@@ -24,6 +24,12 @@ export const ContentSide = styled.div`
   flex: 0 1 60%;
   position: relative;
 `;
+export const FormBlock = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
 export const BgImg = styled.img`
   position: absolute;
   width: 100%;
@@ -32,11 +38,8 @@ export const BgImg = styled.img`
   opacity: 50%;
 `;
 export const Title = styled.h2`
-  position: absolute;
-  z-index: 2;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
+  text-align: center;
+  margin-bottom: 30px;
   font-size: 50px;
 `;
 export const AddNewContact = styled.div`
@@ -55,14 +58,4 @@ export const AddNewContact = styled.div`
       text-decoration: underline;
     }
   }
-`;
-
-export const FilterModal = styled.div`
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  width: 100%;
-  height: 100px;
-  background-color: #fff;
 `;
