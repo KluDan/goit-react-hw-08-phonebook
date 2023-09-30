@@ -56,7 +56,7 @@ export default function Register() {
         </Helmet>
         <Container>
           <BgImg>
-            <img src={RegisterImg} />
+            <img src={RegisterImg} alt="phone" />
           </BgImg>
           <BgContent>
             <BgContentBlock>

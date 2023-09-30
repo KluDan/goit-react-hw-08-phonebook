@@ -107,7 +107,7 @@ export default function Login() {
               <Link to="/register">sign up</Link>
             </BgLeftText>
             <BgImg>
-              <img src={LoginImg} />
+              <img src={LoginImg} alt="Old Phone" />
             </BgImg>
           </BgLeft>
           <BgContent>

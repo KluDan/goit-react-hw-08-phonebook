@@ -25,7 +25,7 @@ export const PhonebookPage = () => {
 
   const [isEditing, setIsEditing] = useState(false);
   const [editingContact, setEditingContact] = useState(null);
-  const [isAddingContact, setIsAddingContact] = useState(false);
+  const [setIsAddingContact] = useState(false);
   const [isEditingForm, setIsEditingForm] = useState(false);
   const [isPhonebookForm, setIsPhonebookForm] = useState(false);
 
@@ -98,7 +98,7 @@ export const PhonebookPage = () => {
         />
       </Contacts>
       <ContentSide>
-        <BgImg src={PhonebookImg} />
+        <BgImg src={PhonebookImg} alt="Work table" />
         <FormBlock>{renderForm()}</FormBlock>
       </ContentSide>
     </Wrapper>
