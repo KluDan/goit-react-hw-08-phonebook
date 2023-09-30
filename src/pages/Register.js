@@ -62,7 +62,7 @@ export default function Register() {
             <BgContentBlock>
               <h1>Create Your Phonebook Account</h1>
               <p>
-                Join our Phonebook community and easily manage your contacts
+                Join our Phonebook community and easily manage your contacts.
               </p>
               <RegisterForm />
             </BgContentBlock>
