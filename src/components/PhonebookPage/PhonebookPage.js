@@ -25,7 +25,7 @@ export const PhonebookPage = () => {
 
   const [isEditing, setIsEditing] = useState(false);
   const [editingContact, setEditingContact] = useState(null);
-  const [setIsAddingContact] = useState(false);
+  const [isAddingContact, setIsAddingContact] = useState(false);
   const [isEditingForm, setIsEditingForm] = useState(false);
   const [isPhonebookForm, setIsPhonebookForm] = useState(false);
 
