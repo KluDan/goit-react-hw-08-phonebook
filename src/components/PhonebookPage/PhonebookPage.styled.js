@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import PhonebookImg from '../../assets/images/PhonebookImg.jpg';
 
 export const Wrapper = styled.div`
   width: 100%;
