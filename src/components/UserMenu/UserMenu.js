@@ -2,7 +2,6 @@ import { useAuth } from 'hooks';
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
 import { BiUserCircle } from 'react-icons/bi';
-import Popper from '@mui/material/Popper';
 import Paper from '@mui/material/Paper';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import List from '@mui/material/List';
@@ -13,6 +12,8 @@ import {
   StyledListItemTextLogOut,
   UserIcon,
   Wrapper,
+  WelcomeText,
+  PopperStyled,
 } from './UserMenu.styled';
 
 export const UserMenu = () => {
@@ -32,11 +33,16 @@ export const UserMenu = () => {
   const id = open ? 'menu-popper' : undefined;
   return (
     <Wrapper>
-      <p>Welcome, {user.name}</p>
+      <WelcomeText>Welcome, {user.name}</WelcomeText>
       <UserIcon onClick={handleClick} style={{ userSelect: 'none' }}>
         <BiUserCircle />
       </UserIcon>
-      <Popper id={id} open={open} anchorEl={anchorEl} placement="bottom-end">
+      <PopperStyled
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        placement="bottom-end"
+      >
         <Paper>
           <ClickAwayListener onClickAway={handleClose}>
             <List>
@@ -50,7 +56,7 @@ export const UserMenu = () => {
             </List>
           </ClickAwayListener>
         </Paper>
-      </Popper>
+      </PopperStyled>
     </Wrapper>
   );
 };

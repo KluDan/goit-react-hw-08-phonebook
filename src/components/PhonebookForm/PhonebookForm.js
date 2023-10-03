@@ -94,9 +94,9 @@ export const PhonebookForm = ({ onClose }) => {
               onChange={handleNumberChange}
               required
             />
+            <ErrorStyled name="number" component="div" />
           </InputField>
 
-          <ErrorStyled name="number" component="div" />
           <FormBtn type="submit" name="add contact" />
         </StyledForm>
       </Formik>

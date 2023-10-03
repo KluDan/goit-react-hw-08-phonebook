@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PhonebookImg from '../../assets/images/PhonebookImg.jpg';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -19,16 +20,34 @@ export const Contacts = styled.div`
   gap: 20px;
   overflow-y: auto;
   position: relative;
+  @media screen and (max-width: 768px) {
+    flex: 100%;
+    width: 100%;
+  }
 `;
 export const ContentSide = styled.div`
   flex: 0 1 60%;
+
   position: relative;
+  @media screen and (max-width: 768px) {
+    flex: 1;
+  }
 `;
 export const FormBlock = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 100;
+  @media screen and (max-width: 768px) {
+    position: static;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px;
+  }
 `;
 export const BgImg = styled.img`
   position: absolute;
@@ -41,6 +60,9 @@ export const Title = styled.h2`
   text-align: center;
   margin-bottom: 30px;
   font-size: 50px;
+  @media screen and (max-width: 768px) {
+    font-size: clamp(2rem, 1rem + 4vw, 3rem);
+  }
 `;
 export const AddNewContact = styled.div`
   display: flex;

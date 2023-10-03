@@ -11,6 +11,12 @@ export const StyledForm = styled(Form)`
   flex-direction: column;
   background: rgba(182, 145, 119, 0.6);
   position: relative;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    max-width: 380px;
+    padding: 40px 20px;
+    gap: 30px;
+  }
 `;
 
 export const InputField = styled.div`

@@ -1,4 +1,4 @@
-import { List, ListItem, ListItemText } from '@mui/material';
+import { List, ListItem, ListItemText, Popper } from '@mui/material';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -6,12 +6,20 @@ export const Wrapper = styled.div`
   align-items: center;
   gap: 12px;
 `;
+export const WelcomeText = styled.div`
+  @media screen and (max-width: 400px) {
+    display: none;
+  }
+`;
 export const UserIcon = styled.div`
   cursor: pointer;
   svg {
     width: 36px;
     height: 36px;
   }
+`;
+export const PopperStyled = styled(Popper)`
+  z-index: 180;
 `;
 export const StyledList = styled(List)`
   font-size: 24px;
@@ -34,4 +42,3 @@ export const StyledListItemTextLogOut = styled(ListItemText)`
   background-color: #d4ae7a;
   border-radius: 5px;
 `;
-

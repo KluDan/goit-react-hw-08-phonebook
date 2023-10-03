@@ -22,7 +22,7 @@ export const FilterStyled = styled.div`
     height: 25px;
     position: absolute;
     top: 50%;
-    left: 10%;
+    left: 48px;
     transform: translateY(-50%);
     z-index: 20;
   }

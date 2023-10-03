@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { FilterStyled} from './Filter.styled';
+import { FilterStyled } from './Filter.styled';
 import { setFilter } from '../../redux/phonebookSlice';
 import { AiOutlineSearch } from 'react-icons/ai';
 

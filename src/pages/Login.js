@@ -5,63 +5,31 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`
-  position: relative;
+  min-height: 100vh;
   display: flex;
-  height: 100vh;
+  overflow-y: auto;
+  @media screen and (max-width: 700px) {
+    display: block;
+  }
+`;
+
+const LeftBlock = styled.div`
+  flex: 40%;
   overflow: hidden;
-  img {
-    width: 100%;
-    height: 100%;
+  background: url(${LoginImg}) no-repeat center/cover;
+  @media screen and (max-width: 1000px) {
+    flex: 50%;
+  }
+  @media screen and (max-width: 700px) {
+    display: none;
   }
 `;
-
-const BgImg = styled.div`
-  height: 100%;
-  img {
-    width: 100%;
-    object-fit: cover;
-  }
-`;
-const BgContent = styled.div`
-  position: relative;
-  flex: 1 0 63%;
+const LeftContent = styled.div`
   width: 100%;
-  background: rgb(3, 9, 5);
-  background: linear-gradient(
-    90deg,
-    rgba(3, 9, 5, 1) 0%,
-    rgba(149, 108, 77, 1) 100%
-  );
-  color: #fff;
-  h1 {
-    font-size: 70px;
-    color: #fff;
-    margin-bottom: 20px;
-  }
-`;
-const PageText = styled.p`
-  text-align: center;
-  max-width: 450px;
-  font-size: 36px;
-  line-height: 1.3;
-  margin-bottom: 60px;
-`;
-
-const BgLeft = styled.div`
-  flex: 1 0 37%;
-  position: relative;
-`;
-const BgContentBlock = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
-const BgLeftText = styled.div`
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translateX(-50%);
+  max-width: 500px;
+  padding-inline: 20px;
+  padding-top: 100px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -69,12 +37,13 @@ const BgLeftText = styled.div`
   h2 {
     color: #fff;
     font-size: 50px;
+    font-size: clamp(1rem, 0.2rem + 4vw, 3rem);
   }
   p {
-    width: 500px;
     color: #fff;
     font-size: 30px;
     text-align: center;
+    font-size: clamp(1rem, 0.5rem + 2vw, 2rem);
   }
   a {
     display: block;
@@ -92,6 +61,54 @@ const BgLeftText = styled.div`
     max-width: 200px;
   }
 `;
+const RightBlock = styled.div`
+  flex: 60%;
+  padding-inline: 20px;
+  background: linear-gradient(
+    90deg,
+    rgba(3, 9, 5, 1) 0%,
+    rgba(149, 108, 77, 1) 100%
+  );
+  color: #fff;
+  @media screen and (max-width: 1000px) {
+    flex: 50%;
+  }
+  @media screen and (max-width: 700px) {
+    min-height: 100vh;
+    &::before {
+      content: '';
+      background: url(${LoginImg}) no-repeat bottom/cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.5;
+    }
+  }
+`;
+const RightContent = styled.div`
+  width: 100%;
+  max-width: 500px;
+  padding-top: 100px;
+  padding-bottom: 20px;
+  margin: 0 auto;
+  opacity: 1;
+  @media screen and (max-width: 700px) {
+    position: relative;
+  }
+  text-align: center;
+  h2 {
+    font-size: clamp(2rem, 1rem + 4vw, 4rem);
+    margin-bottom: 20px;
+  }
+  p {
+    font-size: clamp(1.4rem, 0.2rem + 3vw, 2.3rem);
+    line-height: 1.3;
+    margin-bottom: clamp(2rem, 1rem + 4vw, 4rem);
+  }
+`;
+
 export default function Login() {
   return (
     <HelmetProvider>
@@ -100,25 +117,20 @@ export default function Login() {
           <title>Login</title>
         </Helmet>
         <Container>
-          <BgLeft>
-            <BgLeftText>
+          <LeftBlock>
+            <LeftContent>
               <h2>New here?</h2>
               <p>Sign up and discover great amount of new opportunities!</p>
               <Link to="/register">sign up</Link>
-            </BgLeftText>
-            <BgImg>
-              <img src={LoginImg} alt="Old Phone" />
-            </BgImg>
-          </BgLeft>
-          <BgContent>
-            <BgContentBlock>
-              <h1>Welcome Back!</h1>
-              <PageText>
-                Log in to access your contacts and stay connected
-              </PageText>
+            </LeftContent>
+          </LeftBlock>
+          <RightBlock>
+            <RightContent>
+              <h2>Welcome Back!</h2>
+              <p>Log in to access your contacts and stay connected</p>
               <LoginForm />
-            </BgContentBlock>
-          </BgContent>
+            </RightContent>
+          </RightBlock>
         </Container>
       </div>
     </HelmetProvider>

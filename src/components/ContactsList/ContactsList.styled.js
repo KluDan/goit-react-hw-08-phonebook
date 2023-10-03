@@ -6,6 +6,9 @@ export const List = styled.ul`
   gap: 20px;
   list-style: none;
   padding: 20px 40px;
+  @media screen and (max-width: 940px) {
+    padding: 20px 20px;
+  }
 `;
 export const ListItem = styled.li`
   padding-bottom: 10px;

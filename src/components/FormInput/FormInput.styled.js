@@ -5,6 +5,7 @@ export const InputBlock = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  text-align: left;
 `;
 
 export const Input = styled.input`
@@ -33,7 +34,7 @@ export const Label = styled.label`
 
 export const InputField = styled.div`
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: clamp(1rem, 0.3rem + 3vw, 2.5rem);
 `;
 export const EyeBtn = styled.button`
   border: none;
