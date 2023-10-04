@@ -13,6 +13,7 @@ import {
 import { addContact } from '../../redux/operations';
 import { FormBtn } from 'components/FormBtn/FormBtn';
 import { CloseBtn } from 'components/EditForm/EditForm.styled';
+import { SuccessMessage } from 'components/SuccessMessage/SuccessMessage';
 
 const nameRegExp = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
 const Schema = Yup.object().shape({
@@ -25,6 +26,7 @@ const Schema = Yup.object().shape({
 export const PhonebookForm = ({ onClose }) => {
   const dispatch = useDispatch();
   const [inputNumber, setInputNumber] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleNumberChange = event => {
     const inputValue = event.target.value;
@@ -51,6 +53,7 @@ export const PhonebookForm = ({ onClose }) => {
     await dispatch(addContact({ ...values, number: inputNumber }));
     resetForm();
     setInputNumber('');
+    setIsSuccess(true);
   };
 
   return (
@@ -98,6 +101,11 @@ export const PhonebookForm = ({ onClose }) => {
           </InputField>
 
           <FormBtn type="submit" name="add contact" />
+          <SuccessMessage
+            message="Contact successfully added!"
+            onClose={() => setIsSuccess(false)}
+            show={isSuccess}
+          />
         </StyledForm>
       </Formik>
     </>

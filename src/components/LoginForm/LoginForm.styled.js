@@ -13,26 +13,22 @@ export const Form = styled.form`
   border: 2px solid #d4ae7a;
   border-radius: 30px;
   position: relative;
-  /*   @media screen and (max-width: 900px) {
-    padding: 30px 15px; }*/
-
-  p {
-    position: absolute;
-    top: 10px;
-    left: 26px;
-    display: block;
-    padding: 8px;
-    text-align: start;
-    border-radius: 5px;
-    background-color: #db2d23;
-    font-size: 16px;
-    line-height: 1;
-    color: #fff;
-    margin-bottom: 0;
-  }
 `;
 export const StyledLink = styled(Link)`
   color: #d4ae7a;
   font-size: 18px;
   font-weight: 500;
+`;
+
+export const ErrorText = styled.p`
+  font-size: 15px;
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #db2d23;
+  margin-block: -20px;
+  @media screen and (max-width: 1006px) {
+    font-size: 14px;
+    margin-block: -10px;
+  }
 `;

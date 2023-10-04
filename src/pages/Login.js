@@ -27,7 +27,7 @@ const LeftBlock = styled.div`
 const LeftContent = styled.div`
   width: 100%;
   max-width: 500px;
-  padding-inline: 20px;
+  padding-inline: 10px;
   padding-top: 100px;
   margin: 0 auto;
   display: flex;
@@ -102,11 +102,11 @@ const RightContent = styled.div`
     font-size: clamp(2rem, 1rem + 4vw, 4rem);
     margin-bottom: 20px;
   }
-  p {
-    font-size: clamp(1.4rem, 0.2rem + 3vw, 2.3rem);
-    line-height: 1.3;
-    margin-bottom: clamp(2rem, 1rem + 4vw, 4rem);
-  }
+`;
+const WelcomeText = styled.p`
+  font-size: clamp(1.4rem, 0.2rem + 3vw, 2.3rem);
+  line-height: 1.3;
+  margin-bottom: clamp(2rem, 1rem + 4vw, 4rem);
 `;
 
 export default function Login() {
@@ -127,7 +127,9 @@ export default function Login() {
           <RightBlock>
             <RightContent>
               <h2>Welcome Back!</h2>
-              <p>Log in to access your contacts and stay connected</p>
+              <WelcomeText>
+                Log in to access your contacts and stay connected
+              </WelcomeText>
               <LoginForm />
             </RightContent>
           </RightBlock>

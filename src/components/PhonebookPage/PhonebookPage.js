@@ -31,8 +31,8 @@ export const PhonebookPage = () => {
   const [editingContact, setEditingContact] = useState(null);
   const [isEditingForm, setIsEditingForm] = useState(false);
   const [isPhonebookForm, setIsPhonebookForm] = useState(false);
-  const [isContactsVisible, setIsContactsVisible] = useState(!isMobile);
-  const [isContentSideVisible, setIsContentSideVisible] = useState(isMobile);
+  const [isContactsVisible, setIsContactsVisible] = useState(true);
+  const [isContentSideVisible, setIsContentSideVisible] = useState(!isMobile);
 
   const handleEditClick = contact => {
     setIsEditing(true);

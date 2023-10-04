@@ -14,6 +14,7 @@ import {
 import { editContact } from '../../redux/operations';
 
 import { FormBtn } from 'components/FormBtn/FormBtn';
+import { SuccessMessage } from 'components/SuccessMessage/SuccessMessage';
 
 const nameRegExp = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
 const Schema = Yup.object().shape({
@@ -26,6 +27,7 @@ const Schema = Yup.object().shape({
 export const EditForm = ({ contactId, contactData, onClose }) => {
   const dispatch = useDispatch();
   const [inputNumber, setInputNumber] = useState(contactData.number || '');
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleNumberChange = event => {
     const inputValue = event.target.value;
@@ -52,6 +54,7 @@ export const EditForm = ({ contactId, contactData, onClose }) => {
     await dispatch(
       editContact({ id: contactId, ...values, number: inputNumber })
     );
+    setIsSuccess(true);
   };
 
   return (
@@ -96,10 +99,15 @@ export const EditForm = ({ contactId, contactData, onClose }) => {
               onChange={handleNumberChange}
               required
             />
+            <ErrorStyled name="number" component="div" />
           </InputField>
 
-          <ErrorStyled name="number" component="div" />
-          <FormBtn type="submit" name="Edit" />
+          <SuccessMessage
+            message="Contact successfully edited!"
+            onClose={() => setIsSuccess(false)}
+            show={isSuccess}
+          />
+          <FormBtn type="submit" name="Edit contact" />
         </StyledForm>
       </Formik>
     </>

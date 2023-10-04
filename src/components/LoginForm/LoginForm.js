@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
 
-import { Form, StyledLink } from './LoginForm.styled';
+import { ErrorText, Form, StyledLink } from './LoginForm.styled';
 
 export const LoginForm = () => {
   const error = useSelector(state => state.auth.error);
@@ -40,10 +40,10 @@ export const LoginForm = () => {
         onChange={e => setFormData({ ...formData, password: e.target.value })}
       />
       {error && (
-        <p>
+        <ErrorText>
           Invalid email or password. Please check entered data or{' '}
           <StyledLink to="/register">register</StyledLink> it.
-        </p>
+        </ErrorText>
       )}
 
       <FormBtn name="sign in" />

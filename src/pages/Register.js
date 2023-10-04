@@ -25,7 +25,7 @@ const ContentBlock = styled.div`
     flex: 50%;
   }
   @media screen and (max-width: 768px) {
-    min-height: 100vh;
+    height: 100vh;
     &::before {
       content: '';
       background: url(${RegisterImg}) no-repeat bottom/cover;
@@ -35,6 +35,7 @@ const ContentBlock = styled.div`
       width: 100%;
       height: 100%;
       opacity: 0.5;
+      overflow: hidden;
     }
   }
 `;

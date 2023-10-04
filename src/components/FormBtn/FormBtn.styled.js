@@ -15,6 +15,6 @@ export const Button = styled.button`
   @media screen and (max-width: 768px) {
     display: block;
     max-width: 300px;
-    margin: 0 auto;
+    margin: 20px auto;
   }
 `;
